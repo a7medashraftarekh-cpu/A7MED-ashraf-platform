@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A7MED Ashraf LMS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="login-screen" class="login-screen">
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="logo-icon">A7</div>
+          <h1>A7MED Ashraf LMS</h1>
+          <p>منصة التعلم البرمجي المتكاملة | Evo LMS Technology</p>
+        </div>
+        <form id="login-form">
+          <div class="form-group">
+            <label>اسم المستخدم</label>
+            <input type="text" id="username" placeholder="A7MED ashraf" required>
+          </div>
+          <div class="form-group">
+            <label>كلمة المرور</label>
+            <input type="password" id="password" placeholder="Af.12345" required>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span>تسجيل الدخول</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="dashboard" class="dashboard hidden">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="brand-icon">A7</span>
+          <span>A7MED LMS</span>
+        </div>
+        <nav>
+          <a href="#" class="nav-item active" data-tab="overview">📊 لوحة التحكم</a>
+          <a href="#" class="nav-item" data-tab="courses">📹 الدورات</a>
+          <a href="#" class="nav-item" data-tab="exams">📝 الامتحانات</a>
+          <a href="#" class="nav-item" data-tab="students">👥 الطلاب</a>
+          <a href="#" class="nav-item" data-tab="upload">⬆️ رفع محتوى</a>
+          <a href="#" class="nav-item" id="logout">🚪 تسجيل الخروج</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div id="tab-overview" class="tab-content">
+          <div class="topbar">
+            <h2>لوحة التحكم الرئيسية</h2>
+            <div class="user-badge">
+              <div class="user-avatar">A7</div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">A7MED Ashraf</div>
+                <div style="font-size:12px;color:#64748b;">مدير المنصة</div>
+              </div>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6;">📹</div>
+              <div class="stat-value" id="stat-videos">0</div>
+              <div class="stat-label">فيديو تعليمي</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(16,185,129,0.1);color:#10b981;">📝</div>
+              <div class="stat-value" id="stat-exams">0</div>
+              <div class="stat-label">امتحان نشط</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b;">👥</div>
+              <div class="stat-value">156</div>
+              <div class="stat-label">طالب مسجل</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">📊</div>
+              <div class="stat-value">87%</div>
+              <div class="stat-label">معدل الإنجاز</div>
+            </div>
+          </div>
+          <div class="section-header">
+            <h3>آخر الدورات المضافة</h3>
+          </div>
+          <div class="content-grid" id="recent-courses"></div>
+        </div>
+
+        <div id="tab-courses" class="tab-content hidden">
+          <div class="topbar">
+            <h2>إدارة الدورات والفيديوهات</h2>
+            <button class="btn btn-success" style="width:auto;padding:10px 24px;" onclick="showTab('upload')">+ رفع فيديو جديد</button>
+          </div>
+          <div class="content-grid" id="courses-grid"></div>
+        </div>
+
+        <div id="tab-exams" class="tab-content hidden">
+          <div class="topbar">
+            <h2>إدارة الامتحانات</h2>
+            <button class="btn btn-primary" style="width:auto;padding:10px 24px;" onclick="showTab('upload')">+ إنشاء امتحان جديد</button>
+          </div>
+          <div class="content-grid" id="exams-grid"></div>
+        </div>
+
+        <div id="tab-students" class="tab-content hidden">
+          <div class="topbar"><h2>إدارة الطلاب</h2></div>
+          <div class="panel">
+            <table style="width:100%;border-collapse:collapse;">
+              <thead>
+                <tr style="border-bottom:2px solid #e2e8f0;">
+                  <th style="text-align:right;padding:12px;font-size:13px;color:#64748b;">الطالب</th>
+                  <th style="text-align:right;padding:12px;font-size:13px;color:#64748b;">البريد</th>
+                  <th style="text-align:right;padding:12px;font-size:13px;color:#64748b;">التقدم</th>
+                  <th style="text-align:right;padding:12px;font-size:13px;color:#64748b;">الحالة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:12px;font-weight:600;">أحمد محمد</td>
+                  <td style="padding:12px;color:#64748b;font-size:13px;">ahmed@email.com</td>
+                  <td style="padding:12px;"><div style="background:#e2e8f0;height:6px;border-radius:3px;overflow:hidden;width:120px;"><div style="background:#10b981;height:100%;width:75%;"></div></div></td>
+                  <td style="padding:12px;"><span class="badge badge-green">نشط</span></td>
+                </tr>
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:12px;font-weight:600;">سارة علي</td>
+                  <td style="padding:12px;color:#64748b;font-size:13px;">sara@email.com</td>
+                  <td style="padding:12px;"><div style="background:#e2e8f0;height:6px;border-radius:3px;overflow:hidden;width:120px;"><div style="background:#3b82f6;height:100%;width:45%;"></div></div></td>
+                  <td style="padding:12px;"><span class="badge badge-blue">متوسط</span></td>
+                </tr>
+                <tr>
+                  <td style="padding:12px;font-weight:600;">محمد خالد</td>
+                  <td style="padding:12px;color:#64748b;font-size:13px;">moh@email.com</td>
+                  <td style="padding:12px;"><div style="background:#e2e8f0;height:6px;border-radius:3px;overflow:hidden;width:120px;"><div style="background:#f59e0b;height:100%;width:20%;"></div></div></td>
+                  <td style="padding:12px;"><span class="badge badge-orange">جديد</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="tab-upload" class="tab-content hidden">
+          <div class="topbar"><h2>رفع المحتوى التعليمي</h2></div>
+          <div class="panel">
+            <h4 style="margin-bottom:20px;font-size:16px;">📹 رفع فيديو جديد</h4>
+            <form id="upload-video-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>عنوان الفيديو</label>
+                  <input type="text" name="title" placeholder="مثال: مقدمة في React Hooks" required>
+                </div>
+                <div class="form-group">
+                  <label>التصنيف</label>
+                  <input type="text" name="category" placeholder="React, Node.js, CSS..." required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>الوصف</label>
+                <textarea name="description" rows="3" placeholder="وصف مختصر للفيديو..."></textarea>
+              </div>
+              <div class="form-group">
+                <label>ملف الفيديو</label>
+                <input type="file" name="video" accept="video/*" required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:auto;padding:12px 32px;">رفع الفيديو</button>
+            </form>
+          </div>
+
+          <div class="panel" style="margin-top:24px;">
+            <h4 style="margin-bottom:20px;font-size:16px;">📝 إنشاء امتحان جديد</h4>
+            <form id="create-exam-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>عنوان الامتحان</label>
+                  <input type="text" name="title" placeholder="مثال: اختبار JavaScript المتقدم" required>
+                </div>
+                <div class="form-group">
+                  <label>المدة (دقيقة)</label>
+                  <input type="number" name="duration" value="30" min="1" required>
+                </div>
+              </div>
+              <div id="questions-container">
+                <div class="question-block">
+                  <h5>السؤال 1</h5>
+                  <div class="form-group">
+                    <input type="text" class="q-text" placeholder="نص السؤال" required>
+                  </div>
+                  <div class="option-row">
+                    <input type="radio" name="q1" checked>
+                    <input type="text" class="opt" placeholder="الإجابة الأولى" style="flex:1;" required>
+                  </div>
+                  <div class="option-row">
+                    <input type="radio" name="q1">
+                    <input type="text" class="opt" placeholder="الإجابة الثانية" style="flex:1;" required>
+                  </div>
+                  <div class="option-row">
+                    <input type="radio" name="q1">
+                    <input type="text" class="opt" placeholder="الإجابة الثالثة" style="flex:1;">
+                  </div>
+                  <div class="option-row">
+                    <input type="radio" name="q1">
+                    <input type="text" class="opt" placeholder="الإجابة الرابعة" style="flex:1;">
+                  </div>
+                  <div class="form-group" style="margin-top:12px;">
+                    <label style="font-size:12px;">رقم الإجابة الصحيحة (0-3):</label>
+                    <input type="number" class="q-correct" value="0" min="0" max="3" style="width:80px;">
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-success" style="width:auto;padding:10px 24px;margin-bottom:16px;" onclick="addQuestion()">+ إضافة سؤال</button>
+              <br>
+              <button type="submit" class="btn btn-primary" style="width:auto;padding:12px 32px;">حفظ الامتحان</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
